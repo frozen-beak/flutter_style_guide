@@ -1,40 +1,58 @@
 # 🦮 Flutter Style Guide
 
-Welcome to the Flutter Style Guide, a comprehensive manual designed to standardize and enhance the quality of my Flutter projects.
-This guide provides clear conventions and best practices in Flutter development, ensuring that my code is not only high-performing and reliable but also easy to read and maintain.
+We frontend developers often write and manage a significant amount of code, spending more time reading it than actually writing
+or updating it. Therefore, readability is crucial. This style guide aims to establish standardized practices to achieve maximum
+readability, making our codebase more maintainable and easier to work with.
 
-> **🪶 Note:** Remember, this is a living document that evolves alongside our growing expertise and the ever-changing landscape of Flutter development. Your insights and suggestions are valuable in enriching this guide.
+As John Woods once said, _“Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where
+you live.”_ So, let's make our code a joy to read and maintain!
 
-Let's dive in!
+> **🪶 Note:** This guide is a work in progress! It should evolve as we learn more and as Flutter's ecosystem evolves.
+> Your ideas and suggestions matters. So, let's enjoy the journey! Also feel free to create a pull request if you have any
+> updates or improvements to share.
 
-## Table of Contents
+## Table of contents
 
+- [Naming Conventions](#naming-conventions)
 - [Variables](#variables)
 - [Documentation](#documentation)
-- [Naming Conventions](#naming-conventions)
-- [Utility Classes](#utility-classes)
-- [Architecture](#architecture)
+- More coming soon!
+
+## Naming conventions
+
+Flutter has set of guidelines for us to follow to help us standardise naming conventions in our code.
+Have a look at [Flutter's Official Guidelines for naming](https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo#naming)
+
+Here are some of the guidelines enforced by "flutter_lints",
+
+- Use descriptive names that convey the purpose of the variable, function, or class. For example,
+  instead of `User` name it like `UserProfile` to add more knowledge
+- Avoid using single-letter names for variables, except for simple loop counters.
+- Avoid using reserved keywords or names that conflict with Dart or Flutter libraries.
+- Begin global constant names with prefix "k", like `kApiUrl`.
+- Do not name files with capital letters use underscores instead for improved readability.
+  For example, `my_really_long_file.dart`
+- Use camelCase while naming variables and functions like `myVariableName`
+- Use TitleCase while naming classes and objects, like `UserProfile`
 
 ## Variables
 
-### Final vs Var
+- `final` vs `var`:
 
-- **Prefer `final` over `var`** to enhance code readability and performance in certain scenarios:
-  - **Performance**: In Dart's ahead-of-time (AOT) compilation, `final` variables can potentially be optimized more effectively.
-  - **Readability**: `final` indicates that a variable will not be reassigned, making the code easier to understand.
-- **Use `var` when**:
-  - **Reassignment**: Variable value changes over time.
-  - **Complex Types**: Type inference is complex, and explicit typing is less readable.
-  - **Iterables/Streams**: Useful in iterations where types are inferred.
-  - **Dynamic Nature**: When the variable type is inherently variable or unknown.
+  Prefer the use of `final` variables over `var`. It helps to enhance code readability and performance in certain scenarios like
+  _performance improvements_ and _reliability_. Use `var` only when _reassignment_ or _mutability_ is needed.
 
-_Guideline: Use `final` for immutability and clarity, `var` for reassignment and dynamic scenarios._
+- Use of `const`:
+
+  1. Prefer to use `const` when the value of the variable is immutable as well the value is constant. For example,
+     `const id = 234;`.
+  2. Prefer the use of `const` while initiating objects if they are constants, mainly for Data and Model classes.
+     For example, `final userProfile = const UserProfile();`
 
 ## Documentation
 
-### Dart-Doc Comments
-
 - **Format**:
+
   - Ensure that there are spaces before and after Dart-doc comments.
     ```dart
     ///
@@ -45,6 +63,7 @@ _Guideline: Use `final` for immutability and clarity, `var` for reassignment and
         // do stuff here
     }
     ```
+
 - **Usage Examples**:
 
   - In utility related interfaces, make sure to include an example of usage in Dart-doc comments to clarify usage of the code
@@ -61,57 +80,3 @@ _Guideline: Use `final` for immutability and clarity, `var` for reassignment and
         // function logic
     }
     ````
-
-## Naming Conventions
-
-### General
-
-- Stick to Dart's standard naming conventions for consistency and readability, you can refer [here](https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo#naming)
-
-### File Naming
-
-My file naming conventions are designed to streamline the structure of code in my projects.
-Each file is named with a clear reference to its 'parent', facilitating easier tracking of where it's used.
-This approach effectively utilizes sub-extensions or metadata, as you might call it, to create a coherent
-and navigable codebase.
-
-- **Standard Naming**:
-  - Format: `name_context.type.parent.dart`
-    - Example: `login_button.widget.login_screen.dart`
-- **Test Files**:
-  - Format: `parent/name_context_type_test.dart`
-    - Example: `login_screen/login_button_ui_test.dart`
-
-## Utility Classes
-
-Utility classes are like my Swiss Army knife in coding.
-Compact, static-method hubs for handy, reusable functions that keep my code neat and efficient.
-No frills, just pure utility!
-
-### Principles
-
-- **Avoid Global Functions**: Encapsulate global functions in a class to structure them properly and minimize side effects.
-- **Static Methods**:
-  - Prefer static methods in utility classes to eliminate the need for object references.
-  - Exceptions:
-    - If a utility class contains private or interdependent methods, using static methods is optional.
-    - Ensure uniformity in method implementation - avoid a mix of static and non-static methods in the same class unless necessary.
-
-## Architecture
-
-MVC Architecture is like having a well-organized kitchen in coding.
-It separates the app into three interconnected parts,
-
-- Model (the fridge, where data lives)
-- View (the dining table, what users see and interact with)
-- Controller (the chef, managing the logic). This setup makes modifying and maintaining each section simpler and more efficient.
-
-### Separation of Concerns
-
-- **UI vs Business Logic**:
-  - Maintain a clear separation between UI (User Interface) and business logic.
-  - This separation facilitates easier testing and maintenance.
-
----
-
-I would love to hear your thoughts and would love to make improvements to this style guide. Happy Coding 💚
